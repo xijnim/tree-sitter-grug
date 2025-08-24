@@ -1,0 +1,13 @@
+on_spawn() {
+    set_human_name("Zombie")
+    set_human_health(50.0)
+    set_human_sprite("sprites/zombie.png")
+}
+
+on_kill(killed: id) {
+    print_string(get_human_name(me))
+    print_string(" killed ")
+    print_string(get_human_name(killed))
+    print_newline()
+}
+
