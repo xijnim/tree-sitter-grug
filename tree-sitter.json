@@ -7,10 +7,11 @@
       "title": "Grug",
       "scope": "source.grug",
       "file-types": [
-        ".grug"
+        "grug"
       ],
       "injection-regex": "^grug$",
-      "class-name": "TreeSitterGrug"
+      "class-name": "TreeSitterGrug",
+      "highlights": "queries/highlights.scm"
     }
   ],
   "metadata": {

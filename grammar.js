@@ -7,6 +7,7 @@
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 
+
 module.exports = grammar({
   name: "grug",
 
@@ -16,25 +17,45 @@ module.exports = grammar({
 
     _statement: $ => choice(
       $.variable_declaration,
+      $.assignment,
+      $.if_statement,
       $.function_declaration,
-      $.function_call
+      $.function_call,
+      $.return_statement,
+      $.empty_return,
     ),
 
     variable_declaration: $ => seq(
       $.identifier,
       ":",
       $.type,
-      "=",
-      $._expression,
+      optional(
+        seq(
+          "=",
+          $._expression,
+        )
+      )
     ),
+
     function_declaration: $ => seq(
-      $.identifier,
+      field(
+        "name", 
+        choice(
+          $.on_identifier,
+          $.helper_identifier,
+        ),
+      ),
       "(",
       repeat(seq($.function_parameter, ",")),
       optional($.function_parameter),
       ")",
       $.body
     ),
+
+    on_identifier: $ => /on_[a-zA-Z_]*/,
+    helper_identifier: $ => /helper_[a-zA-Z_]*/,
+
+    comment: $ => /#.*\n/,
 
     function_parameter: $ => seq(
       $.identifier,
@@ -48,7 +69,7 @@ module.exports = grammar({
       "}"
     ),
 
-    identifier: $ => /[a-zA-Z_]+/,
+    identifier: $ => /[a-zA-Z_]+[0-9]*/,
     number: $ => /\d+(\.\d*)?/,
     string: $ => /\"(.*?)\"/,
 
@@ -57,20 +78,96 @@ module.exports = grammar({
       "f32",
       "string",
       "id",
+      $.identifier,
+    ),
+
+    if_statement: $ => seq(
+      "if",
+      field("condition", $._expression),
+      $.body,
+      optional(field("else", 
+        seq(
+          "else",
+          choice(
+            $.body,
+            $.if_statement
+          )
+        )
+      ))
+    ),
+
+    return_statement: $ => prec.left(2, seq(
+      "return",
+      $._expression,
+    )),
+
+    empty_return: $ => prec.left(1, "return"),
+
+    assignment: $ => seq(
+      $.identifier,
+      "=",
+      field(
+        "value",
+        $._expression,
+      ),
     ),
 
     _expression: $ => choice(
+      "me",
+      $.unary_expression,
+      $.binary_expression,
       $.identifier,
       $.number,
       $.string,
       $.function_call
     ),
 
+    binary_expression: $ => choice(
+      ...(
+        [
+          ["or", 1],
+          ['and', 2],
+          ['==', 3],
+          ['!=', 3],
+          ['>=', 4],
+          ['>', 4],
+          ['<=', 4],
+          ['<', 4],
+          ['+', 5],
+          ['-', 5],
+          ['*', 6],
+          ['/', 6],
+          ['%', 6],
+        ].map(([operator, precedence]) => 
+          prec.left(
+            precedence,
+            seq(
+              field("left", $._expression),
+              field("operator", operator),
+              field("right", $._expression),
+            )
+          )
+        )
+      )
+    ),
+    unary_expression: $ => prec.left(
+      7,
+      seq(
+        field("operator", choice("not", "!")),
+        field("operand", $._expression),
+      )
+    ),
+
     function_call: $ => seq(
-      $.identifier,
+      field("name", choice($.helper_identifier, $.identifier)),
       "(",
       seq(repeat(seq($._expression, ",")), optional($._expression)),
       ")"
     ),
-  }
+  },
+  extras: $ => [
+    $.comment,
+    /\s/
+  ],
+  word: $ => $.identifier
 });

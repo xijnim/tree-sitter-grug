@@ -1,13 +1,11 @@
 on_spawn() {
-    set_human_name("Zombie")
-    set_human_health(50.0)
-    set_human_sprite("sprites/zombie.png")
+    set_counter_name("Shots counter")
 }
 
-on_kill(killed: id) {
-    print_string(get_human_name(me))
-    print_string(" killed ")
-    print_string(get_human_name(killed))
-    print_newline()
+on_tick() {
+    if map_has_i32(me, "shots") {
+        shots: i32 = map_get_i32(me, "shots")
+        print_string("shots:")
+        print_i32(shots)
+    }
 }
-
