@@ -3,9 +3,16 @@ on_spawn() {
 }
 
 on_tick() {
+    # comment
     if map_has_i32(me, "shots") {
         shots: i32 = map_get_i32(me, "shots")
         print_string("shots:")
         print_i32(shots)
+    } else {
+        helper_hi()
     }
+}
+
+helper_hi() {
+    
 }
