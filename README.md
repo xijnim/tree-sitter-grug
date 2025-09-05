@@ -21,3 +21,8 @@ parser_config.grug = {
 }
 ```
 
+Remember to also create this in your runtime path (~/.config/nvim)
+queries/grug/highlights.scm
+
+You can copy and paste it from this repo or symlink it
+

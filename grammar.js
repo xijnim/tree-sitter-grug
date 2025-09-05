@@ -19,6 +19,7 @@ module.exports = grammar({
       $.variable_declaration,
       $.assignment,
       $.if_statement,
+      $.while_statement,
       $.function_declaration,
       $.function_call,
       $.return_statement,
@@ -94,6 +95,12 @@ module.exports = grammar({
           )
         )
       ))
+    ),
+
+    while_statement: $ => seq(
+      "while",
+      field("condition", $._expression),
+      $.body,
     ),
 
     return_statement: $ => prec.left(2, seq(

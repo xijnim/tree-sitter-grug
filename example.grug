@@ -11,6 +11,13 @@ on_tick() {
     } else {
         helper_hi()
     }
+
+    i: i32 = 0
+
+    while i < 10 {
+        println()
+        i = i + 1
+    }
 }
 
 helper_hi() {
