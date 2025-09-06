@@ -27,9 +27,9 @@ module.exports = grammar({
     ),
 
     variable_declaration: $ => seq(
-      $.identifier,
+      field("name", $.identifier),
       ":",
-      $.type,
+      field("type", $.type),
       optional(
         seq(
           "=",
@@ -38,7 +38,7 @@ module.exports = grammar({
       )
     ),
 
-    function_declaration: $ => seq(
+    function_declaration: $ => prec(2, seq(
       field(
         "name", 
         choice(
@@ -47,11 +47,17 @@ module.exports = grammar({
         ),
       ),
       "(",
-      repeat(seq($.function_parameter, ",")),
-      optional($.function_parameter),
+      field(
+        "params",
+        seq(
+          repeat(seq($.function_parameter, ",")),
+          optional($.function_parameter),
+        )
+      ),
       ")",
-      $.body
-    ),
+      optional(field("ret_type", $.type)),
+      field("body", $.body)
+    )),
 
     on_identifier: $ => /on_[a-zA-Z_]*/,
     helper_identifier: $ => /helper_[a-zA-Z_]*/,
@@ -59,9 +65,9 @@ module.exports = grammar({
     comment: $ => /#.*\n/,
 
     function_parameter: $ => seq(
-      $.identifier,
+      field("name", $.identifier),
       ":",
-      $.type
+      field("type", $.type)
     ),
 
     body: $ => seq(
@@ -165,12 +171,12 @@ module.exports = grammar({
       )
     ),
 
-    function_call: $ => seq(
+    function_call: $ => prec(1, seq(
       field("name", choice($.helper_identifier, $.identifier)),
       "(",
       seq(repeat(seq($._expression, ",")), optional($._expression)),
       ")"
-    ),
+    )),
   },
   extras: $ => [
     $.comment,

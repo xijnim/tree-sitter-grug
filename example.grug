@@ -20,6 +20,6 @@ on_tick() {
     }
 }
 
-helper_hi() {
+helper_hi() string {
     
 }
