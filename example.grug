@@ -20,6 +20,6 @@ on_tick() {
     }
 }
 
-helper_hi() string {
+helper_hi(a: string, b: i32, wlupg: f32) string {
     
 }

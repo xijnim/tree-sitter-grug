@@ -307,7 +307,7 @@
           }
         ]
       },
-      "params": {
+      "param": {
         "multiple": true,
         "required": false,
         "types": [

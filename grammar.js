@@ -48,7 +48,7 @@ module.exports = grammar({
       ),
       "(",
       field(
-        "params",
+        "param",
         seq(
           repeat(seq($.function_parameter, ",")),
           optional($.function_parameter),
