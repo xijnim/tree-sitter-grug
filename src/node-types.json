@@ -807,6 +807,10 @@
     "named": false
   },
   {
+    "type": "resource",
+    "named": false
+  },
+  {
     "type": "return",
     "named": false
   },

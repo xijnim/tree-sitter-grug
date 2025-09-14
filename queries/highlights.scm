@@ -2,6 +2,7 @@
 "f32" @type
 "string" @type
 "id" @type
+"resource" @type
 "{" @punctuation.bracket
 "}" @punctuation.bracket
 "me" @variable.builtin
@@ -15,6 +16,6 @@
 (function_declaration name: (on_identifier) @function.builtin)
 (function_declaration name: (helper_identifier) @function)
 (function_call name: (helper_identifier) @function)
-(function_call name: (identifier) @tag)
+(function_call name: (identifier) @function)
 (number) @number
 (string) @string

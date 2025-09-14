@@ -85,6 +85,7 @@ module.exports = grammar({
       "f32",
       "string",
       "id",
+      "resource",
       $.identifier,
     ),
 

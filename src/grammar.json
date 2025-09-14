@@ -277,6 +277,10 @@
           "value": "id"
         },
         {
+          "type": "STRING",
+          "value": "resource"
+        },
+        {
           "type": "SYMBOL",
           "name": "identifier"
         }
