@@ -6,6 +6,7 @@
 "and" @keyword
 "else" @keyword
 "while" @keyword
+"return" @keyword
 (identifier) @variable
 (comment) @comment
 (function_declaration name: (on_identifier) @function.builtin)
