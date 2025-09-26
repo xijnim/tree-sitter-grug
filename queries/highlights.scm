@@ -1,8 +1,4 @@
-"i32" @type
-"f32" @type
-"string" @type
-"id" @type
-"resource" @type
+(type) @type
 "{" @punctuation.bracket
 "}" @punctuation.bracket
 "me" @variable.builtin
