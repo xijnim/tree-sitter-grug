@@ -59,8 +59,8 @@ module.exports = grammar({
       field("body", $.body)
     )),
 
-    on_identifier: $ => /on_[a-zA-Z_]*/,
-    helper_identifier: $ => /helper_[a-zA-Z_]*/,
+    on_identifier: $ => /on_[a-zA-Z_0-9]*/,
+    helper_identifier: $ => /helper_[a-zA-Z_0-9]*/,
 
     comment: $ => /#.*\n/,
 
@@ -76,7 +76,7 @@ module.exports = grammar({
       "}"
     ),
 
-    identifier: $ => /[a-zA-Z_]+[0-9]*/,
+    identifier: $ => /[a-zA-Z_]+[0-9a-zA-Z_]*/,
     number: $ => /\d+(\.\d*)?/,
     string: $ => /\"(.*?)\"/,
 

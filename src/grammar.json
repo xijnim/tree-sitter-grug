@@ -190,11 +190,11 @@
     },
     "on_identifier": {
       "type": "PATTERN",
-      "value": "on_[a-zA-Z_]*"
+      "value": "on_[a-zA-Z_0-9]*"
     },
     "helper_identifier": {
       "type": "PATTERN",
-      "value": "helper_[a-zA-Z_]*"
+      "value": "helper_[a-zA-Z_0-9]*"
     },
     "comment": {
       "type": "PATTERN",
@@ -247,7 +247,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[a-zA-Z_]+[0-9]*"
+      "value": "[a-zA-Z_]+[0-9a-zA-Z_]*"
     },
     "number": {
       "type": "PATTERN",
