@@ -175,9 +175,11 @@ module.exports = grammar({
     function_call: $ => prec(1, seq(
       field("name", choice($.helper_identifier, $.identifier)),
       "(",
-      seq(repeat(seq($._expression, ",")), optional($._expression)),
+      seq(repeat(seq($.argument, ",")), optional($.argument)),
       ")"
     )),
+
+    argument: $ => $._expression,
   },
   extras: $ => [
     $.comment,

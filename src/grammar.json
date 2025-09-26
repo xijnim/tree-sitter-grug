@@ -946,7 +946,7 @@
                   "members": [
                     {
                       "type": "SYMBOL",
-                      "name": "_expression"
+                      "name": "argument"
                     },
                     {
                       "type": "STRING",
@@ -960,7 +960,7 @@
                 "members": [
                   {
                     "type": "SYMBOL",
-                    "name": "_expression"
+                    "name": "argument"
                   },
                   {
                     "type": "BLANK"
@@ -975,6 +975,10 @@
           }
         ]
       }
+    },
+    "argument": {
+      "type": "SYMBOL",
+      "name": "_expression"
     }
   },
   "extras": [
