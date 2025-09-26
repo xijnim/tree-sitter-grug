@@ -1,4 +1,3 @@
-(type) @type
 "{" @punctuation.bracket
 "}" @punctuation.bracket
 "me" @variable.builtin
@@ -15,3 +14,5 @@
 (function_call name: (identifier) @function)
 (number) @number
 (string) @string
+(type) @type
+(type (identifier) @type)
