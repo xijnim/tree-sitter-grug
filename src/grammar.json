@@ -965,8 +965,12 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "SYMBOL",
-                      "name": "argument"
+                      "type": "FIELD",
+                      "name": "argument",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "argument"
+                      }
                     },
                     {
                       "type": "STRING",
@@ -979,19 +983,23 @@
                 "type": "CHOICE",
                 "members": [
                   {
-                    "type": "SYMBOL",
-                    "name": "argument"
+                    "type": "FIELD",
+                    "name": "argument",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "argument"
+                    }
                   },
                   {
                     "type": "BLANK"
                   }
                 ]
+              },
+              {
+                "type": "STRING",
+                "value": ")"
               }
             ]
-          },
-          {
-            "type": "STRING",
-            "value": ")"
           }
         ]
       }

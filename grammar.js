@@ -40,7 +40,7 @@ module.exports = grammar({
 
     function_declaration: $ => prec(2, seq(
       field(
-        "name", 
+        "name",
         choice(
           $.on_identifier,
           $.helper_identifier,
@@ -93,7 +93,7 @@ module.exports = grammar({
       "if",
       field("condition", $._expression),
       field("body", $.body),
-      optional( 
+      optional(
         seq(
           "else",
           field("else", choice(
@@ -152,7 +152,7 @@ module.exports = grammar({
           ['*', 6],
           ['/', 6],
           ['%', 6],
-        ].map(([operator, precedence]) => 
+        ].map(([operator, precedence]) =>
           prec.left(
             precedence,
             seq(
@@ -175,8 +175,11 @@ module.exports = grammar({
     function_call: $ => prec(1, seq(
       field("name", choice($.helper_identifier, $.identifier)),
       "(",
-      seq(repeat(seq($.argument, ",")), optional($.argument)),
+      seq(
+        repeat(seq(field("argument", $.argument), ",")), 
+        optional(field("argument", $.argument)),
       ")"
+      )
     )),
 
     argument: $ => $._expression,
