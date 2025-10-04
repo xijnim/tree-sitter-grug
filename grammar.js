@@ -33,7 +33,7 @@ module.exports = grammar({
       optional(
         seq(
           "=",
-          $._expression,
+          field("value", $._expression),
         )
       )
     ),
@@ -92,33 +92,33 @@ module.exports = grammar({
     if_statement: $ => seq(
       "if",
       field("condition", $._expression),
-      $.body,
-      optional(field("else", 
+      field("body", $.body),
+      optional( 
         seq(
           "else",
-          choice(
+          field("else", choice(
             $.body,
             $.if_statement
-          )
+          ))
         )
-      ))
+      )
     ),
 
     while_statement: $ => seq(
       "while",
       field("condition", $._expression),
-      $.body,
+      field("body", $.body),
     ),
 
     return_statement: $ => prec.left(2, seq(
       "return",
-      $._expression,
+      field("value", $._expression),
     )),
 
     empty_return: $ => prec.left(1, "return"),
 
     assignment: $ => seq(
-      $.identifier,
+      field("name", $.identifier),
       "=",
       field(
         "value",
@@ -183,7 +183,7 @@ module.exports = grammar({
   },
   extras: $ => [
     $.comment,
-    /\s/
+    /[\s\t]/
   ],
   word: $ => $.identifier
 });

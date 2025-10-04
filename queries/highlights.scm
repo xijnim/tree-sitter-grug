@@ -4,6 +4,7 @@
 "if" @keyword
 "or" @keyword
 "and" @keyword
+"not" @keyword
 "else" @keyword
 "while" @keyword
 "return" @keyword
