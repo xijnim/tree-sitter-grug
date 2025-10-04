@@ -38,7 +38,7 @@ module.exports = grammar({
       )
     ),
 
-    function_declaration: $ => prec(2, seq(
+    function_declaration: $ => seq(
       field(
         "name",
         choice(
@@ -49,15 +49,17 @@ module.exports = grammar({
       "(",
       field(
         "param",
-        seq(
-          repeat(seq($.function_parameter, ",")),
-          optional($.function_parameter),
+        optional(
+          seq(
+            $.function_parameter,
+            repeat(seq(",", $.function_parameter)),
+          )
         )
       ),
       ")",
       optional(field("ret_type", $.type)),
       field("body", $.body)
-    )),
+    ),
 
     on_identifier: $ => /on_[a-zA-Z_0-9]*/,
     helper_identifier: $ => /helper_[a-zA-Z_0-9]*/,
@@ -134,11 +136,11 @@ module.exports = grammar({
       $.number,
       $.string,
       $.function_call,
-      seq(
-        "(",
-          $._expression,
-          ")",
-      ),
+      // seq(
+      //   "(",
+      //     $._expression,
+      //     ")",
+      // ),
     ),
 
     binary_expression: $ => choice(
@@ -180,11 +182,13 @@ module.exports = grammar({
     function_call: $ => prec(1, seq(
       field("name", choice($.helper_identifier, $.identifier)),
       "(",
-      seq(
-        repeat(seq(field("argument", $.argument), ",")), 
-        optional(field("argument", $.argument)),
+      optional(
+        seq(
+          field("argument", $.argument),
+          repeat(seq(",", field("argument", $.argument))),
+        )
+      ),
       ")"
-      )
     )),
 
     argument: $ => $._expression,
