@@ -133,7 +133,12 @@ module.exports = grammar({
       $.identifier,
       $.number,
       $.string,
-      $.function_call
+      $.function_call,
+      seq(
+        "(",
+          $._expression,
+          ")",
+      ),
     ),
 
     binary_expression: $ => choice(
@@ -167,7 +172,7 @@ module.exports = grammar({
     unary_expression: $ => prec.left(
       7,
       seq(
-        field("operator", choice("not", "!")),
+        field("operator", choice("not", "-")),
         field("operand", $._expression),
       )
     ),
