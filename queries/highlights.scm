@@ -1,14 +1,19 @@
 "{" @punctuation.bracket
 "}" @punctuation.bracket
 "me" @variable.builtin
-(boolean) @keyword
-"if" @keyword
-"or" @keyword
-"and" @keyword
-"not" @keyword
-"else" @keyword
-"while" @keyword
-"return" @keyword
+(boolean) @boolean
+
+"if" @keyword.conditional
+"else" @keyword.conditional
+
+"or" @keyword.operator
+"and" @keyword.operator
+"not" @keyword.operator
+
+"while" @keyword.repeat
+
+"return" @keyword.return
+
 (identifier) @variable
 (comment) @comment
 (function_declaration name: (on_identifier) @function.builtin)
@@ -19,3 +24,4 @@
 (string) @string
 (type) @type
 (type (identifier) @type)
+(function_parameter (identifier) @parameter)
