@@ -779,11 +779,6 @@
     "named": false
   },
   {
-    "type": "empty_line",
-    "named": true,
-    "extra": true
-  },
-  {
     "type": "f32",
     "named": false
   },

@@ -1003,23 +1003,12 @@
     "argument": {
       "type": "SYMBOL",
       "name": "_expression"
-    },
-    "empty_line": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "\\s*\\r?\\n"
-      }
     }
   },
   "extras": [
     {
       "type": "SYMBOL",
       "name": "comment"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "empty_line"
     },
     {
       "type": "PATTERN",
