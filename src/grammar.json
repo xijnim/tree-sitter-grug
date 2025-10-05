@@ -1003,6 +1003,10 @@
     "argument": {
       "type": "SYMBOL",
       "name": "_expression"
+    },
+    "empty_line": {
+      "type": "PATTERN",
+      "value": "[\\s\\t]"
     }
   },
   "extras": [
@@ -1011,8 +1015,8 @@
       "name": "comment"
     },
     {
-      "type": "PATTERN",
-      "value": "[\\s\\t]"
+      "type": "SYMBOL",
+      "name": "empty_line"
     }
   ],
   "conflicts": [],
