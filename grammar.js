@@ -136,11 +136,13 @@ module.exports = grammar({
       $.number,
       $.string,
       $.function_call,
-      seq(
-        "(",
-          $._expression,
-          ")",
-      ),
+      $.contained_expression,
+    ),
+
+    contained_expression: $ => seq(
+      "(",
+      $._expression,
+      ")",
     ),
 
     binary_expression: $ => choice(
