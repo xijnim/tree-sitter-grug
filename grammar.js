@@ -88,6 +88,7 @@ module.exports = grammar({
       "string",
       "id",
       "resource",
+      "bool",
       $.identifier,
     ),
 
@@ -130,6 +131,7 @@ module.exports = grammar({
 
     _expression: $ => choice(
       "me",
+      $.boolean,
       $.unary_expression,
       $.binary_expression,
       $.identifier,
@@ -137,6 +139,11 @@ module.exports = grammar({
       $.string,
       $.function_call,
       $.contained_expression,
+    ),
+
+    boolean: $ => choice(
+      "true",
+      "false",
     ),
 
     contained_expression: $ => seq(

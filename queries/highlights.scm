@@ -1,6 +1,7 @@
 "{" @punctuation.bracket
 "}" @punctuation.bracket
 "me" @variable.builtin
+(boolean) @keyword
 "if" @keyword
 "or" @keyword
 "and" @keyword

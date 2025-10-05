@@ -281,6 +281,10 @@
           "value": "resource"
         },
         {
+          "type": "STRING",
+          "value": "bool"
+        },
+        {
           "type": "SYMBOL",
           "name": "identifier"
         }
@@ -433,6 +437,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "boolean"
+        },
+        {
+          "type": "SYMBOL",
           "name": "unary_expression"
         },
         {
@@ -458,6 +466,19 @@
         {
           "type": "SYMBOL",
           "name": "contained_expression"
+        }
+      ]
+    },
+    "boolean": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "true"
+        },
+        {
+          "type": "STRING",
+          "value": "false"
         }
       ]
     },
