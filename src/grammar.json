@@ -1005,8 +1005,11 @@
       "name": "_expression"
     },
     "empty_line": {
-      "type": "PATTERN",
-      "value": "[\\s\\t]"
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "\\s*\\r?\\n"
+      }
     }
   },
   "extras": [
@@ -1017,6 +1020,10 @@
     {
       "type": "SYMBOL",
       "name": "empty_line"
+    },
+    {
+      "type": "PATTERN",
+      "value": "[\\s\\t]"
     }
   ],
   "conflicts": [],

@@ -192,11 +192,12 @@ module.exports = grammar({
     )),
 
     argument: $ => $._expression,
-    empty_line: $ => /[\s\t]/,
+    empty_line: $ => token(/\s*\r?\n/),
   },
   extras: $ => [
     $.comment,
     $.empty_line,
+    /[\s\t]/,
   ],
   word: $ => $.identifier
 });
